@@ -23,42 +23,49 @@ cover: /assets/images/posts/js-tab-ecommerce-cover.png
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>今日特价 - 电商特价页</title>
     <style>
-        /* 基础样式 */
+        /* 基础样式（所有px替换为百分比/视口单位） */
         .box {
             margin: 0 auto;
-            width: 800px;
-            height: 400px;
+            width: 90vw; /* 占视口宽度90% */
+            max-width: 800px; /* 最大宽度限制（避免过大） */
+            height: 50vw; /* 基于视口宽度的高度，保持比例 */
+            max-height: 400px;
             background-color: rgb(251, 249, 249);
         }
 
         .nav {
             margin: 0 auto;
-            width: 800px;
-            height: 50px;
+            width: 100%; 
+            height: 12.5%; 
         }
 
         .nav h3 {
-            margin-left: 30px;
+            margin-left: 3.75%; 
             float: left;
+            font-size: 2vw; /* 基于视口宽度的字体大小 */
+            margin-top: 1%; /* 微调垂直居中 */
         }
 
         .nav ul {
-            margin-top: 20px;
-            margin-right: 30px;
+            margin-top: 5%; 
+            margin-right: 3.75%; 
             float: right;
-            width: 400px;
-            height: 50px;
+            width: 50%;
+            height: 12.5%; 
             list-style: none;
+            padding: 0;
         }
 
         .nav a {
             text-decoration: none;
             color: black;
-            margin-left: 40px;
+            margin-left: 10%; 
             float: left;
-            line-height: 35px;
-            width: 35px;
-            height: 35px;
+            line-height: 87.5%; 
+            width: 8.75%; 
+            height: 87.5%; 
+            font-size: 1.5vw; /* 响应式字体 */
+            text-align: center;
         }
 
         /* 激活状态样式 */
@@ -68,43 +75,52 @@ cover: /assets/images/posts/js-tab-ecommerce-cover.png
 
         /* 内容区域样式 */
         .banner {
-            margin-top: 20px;
+            margin-top: 5%; 
             position: relative;
-            width: 800px;
-            height: 500px;
+            width: 100%; 
+            height: 125%; 
+            max-height: 500px;
         }
 
         .left {
             position: absolute;
             left: 0;
-            width: 200px;
-            height: 330px;
+            width: 25%; 
+            height: 66%; 
         }
 
         .left img {
-            width: 200px;
-            height: 200px;
+            width: 100%; 
+            height: 60.6%; 
+            object-fit: cover; 
         }
 
         .left p {
             display: block;
-            margin-left: 30px;
+            margin-left: 15%; 
+            font-size: 1.4vw;
+            margin-top: 2%;
+            margin-bottom: 2%;
         }
 
         .left p[color="red"] {
             color: red;
+            font-weight: bold;
+            font-size: 1.6vw;
         }
 
         .right {
             position: absolute;
             right: 0;
-            padding-left: 30px;
-            width: 570px;
-            height: 300px;
+            padding-left: 3.75%; 
+            width: 71.25%; 
+            height: 60%; 
         }
 
         .right .rig {
             display: none;
+            width: 100%;
+            height: 100%;
         }
 
         .right .active {
@@ -112,9 +128,26 @@ cover: /assets/images/posts/js-tab-ecommerce-cover.png
         }
 
         .right img {
-            width: 120px;
-            height: 120px;
-            margin-right: 10px;
+            width: 22.6%; 
+            height: 48%; 
+            margin-right: 1.89%; 
+            object-fit: cover;
+        }
+
+        .right .rig span {
+            font-size: 1.3vw;
+            margin-right: 2%;
+        }
+
+        
+        @media (max-width: 600px) {
+            .nav a {
+                font-size: 1.2vw;
+                margin-left: 8%;
+            }
+            .left p, .right span {
+                font-size: 1.8vw;
+            }
         }
     </style>
 </head>
@@ -124,11 +157,11 @@ cover: /assets/images/posts/js-tab-ecommerce-cover.png
         <div class="nav">
             <h3>今日特价</h3>
             <ul>
-                <li><a href="" class="active" data-id="0">精选</a></li>
-                <li><a href="" data-id="1">美食</a></li>
-                <li><a href="" data-id="2">百货</a></li>
-                <li><a href="" data-id="3">个护</a></li>
-                <li><a href="" data-id="4">预告</a></li>
+                <li><a href="javascript:;" class="active" data-id="0">精选</a></li>
+                <li><a href="javascript:;" data-id="1">美食</a></li>
+                <li><a href="javascript:;" data-id="2">百货</a></li>
+                <li><a href="javascript:;" data-id="3">个护</a></li>
+                <li><a href="javascript:;" data-id="4">预告</a></li>
             </ul>
         </div>
 
@@ -144,41 +177,38 @@ cover: /assets/images/posts/js-tab-ecommerce-cover.png
             </div>
             <div class="right">
                 <div class="rig active">
-                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合">饮料组合￥9.9
-                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合">饮料组合￥8.8
-                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合">饮料组合￥7.7
-                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合">饮料组合￥6.6
+                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合"><span>饮料组合￥9.9</span>
+                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合"><span>饮料组合￥8.8</span>
+                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合"><span>饮料组合￥7.7</span>
+                    <img src="/assets/images/posts/tab-drink.png" alt="饮料组合"><span>饮料组合￥6.6</span>
                 </div>
                 <div class="rig">
-                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒">零食套盒￥9.9
-                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒">零食套盒￥8.8
-                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒">零食套盒￥7.7
-                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒">零食套盒￥6.6
+                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒"><span>零食套盒￥9.9</span>
+                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒"><span>零食套盒￥8.8</span>
+                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒"><span>零食套盒￥7.7</span>
+                    <img src="/assets/images/posts/tab-snack.png" alt="零食套盒"><span>零食套盒￥6.6</span>
                 </div>
                 <div class="rig">
-                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒">果汁套盒￥9.9
-                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒">果汁套盒￥8.8
-                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒">果汁套盒￥7.7
-                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒">果汁套盒￥6.6
+                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒"><span>果汁套盒￥9.9</span>
+                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒"><span>果汁套盒￥8.8</span>
+                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒"><span>果汁套盒￥7.7</span>
+                    <img src="/assets/images/posts/tab-juice.png" alt="果汁套盒"><span>果汁套盒￥6.6</span>
                 </div>
                 <div class="rig">
-                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒">啤酒套盒￥9.9
-                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒">啤酒套盒￥8.8
-                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒">啤酒套盒￥7.7
-                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒">啤酒套盒￥6.6
+                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒"><span>啤酒套盒￥9.9</span>
+                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒"><span>啤酒套盒￥8.8</span>
+                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒"><span>啤酒套盒￥7.7</span>
+                    <img src="/assets/images/posts/tab-beer.png" alt="啤酒套盒"><span>啤酒套盒￥6.6</span>
                 </div>
                 <div class="rig">
-                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔">莫兰迪色荧光笔￥9.9
-                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔">莫兰迪色荧光笔￥8.8
-                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔">莫兰迪色荧光笔￥7.7
-                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔">莫兰迪色荧光笔￥6.6
+                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔"><span>莫兰迪色荧光笔￥9.9</span>
+                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔"><span>莫兰迪色荧光笔￥8.8</span>
+                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔"><span>莫兰迪色荧光笔￥7.7</span>
+                    <img src="/assets/images/posts/tab-pen.png" alt="荧光笔"><span>莫兰迪色荧光笔￥6.6</span>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
-
 ## 核心script实现代码
 <script>
 // 获取 Tab 导航父容器（事件委托目标）
