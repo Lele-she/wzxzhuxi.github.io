@@ -6,14 +6,28 @@ permalink: /books/
 
 <section class="books-collection">
   <div class="posts-grid">
-    {% assign books_sorted = site.books | sort: "order" %}
-    {% for book in books_sorted %}
+    {% assign all_books = "" | split: "" %}
+    {% for item in site.books %}
+      {% unless item.book or item.path contains 'TEMPLATE' %}
+        {% assign all_books = all_books | push: item %}
+      {% endunless %}
+    {% endfor %}
+    {% assign all_books = all_books | sort: "order" %}
+    {% for book in all_books %}
       <article class="post-card">
         <div class="post-number">BK{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
         <h2>
           <a href="{{ book.url }}">{{ book.title }}</a>
         </h2>
-        <p class="post-meta">多章节长文 · 作者：{{ book.author | default: "A_Bit_S 团队" }}</p>
+        {% assign book_author_data = site.data.authors[book.author] %}
+        <p class="post-meta">
+          多章节长文 · 作者：
+          {% if book_author_data %}
+            {{ book_author_data.name }}
+          {% else %}
+            {{ book.author | default: "A_Bit_S 团队" }}
+          {% endif %}
+        </p>
         <p class="post-excerpt">{{ book.description | strip_html | truncate: 220 }}</p>
         <a href="{{ book.url }}" class="read-more">查看章节 →</a>
       </article>
